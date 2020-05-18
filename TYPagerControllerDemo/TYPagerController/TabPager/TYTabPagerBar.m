@@ -210,7 +210,9 @@
 }
 
 - (void)scrollToItemAtIndex:(NSInteger)index atScrollPosition:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated {
-    [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] atScrollPosition:scrollPosition animated:animated];
+    if (_countOfItems > 0 && index < _countOfItems && index >= 0) {
+        [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] atScrollPosition:scrollPosition animated:animated];
+    }
 }
 
 - (CGFloat)cellWidthForTitle:(NSString *)title {
