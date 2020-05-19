@@ -211,7 +211,15 @@
 
 - (void)scrollToItemAtIndex:(NSInteger)index atScrollPosition:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated {
     if (_countOfItems > 0 && index < _countOfItems && index >= 0) {
-        [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] atScrollPosition:scrollPosition animated:animated];
+        @try {
+            [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] atScrollPosition:scrollPosition animated:animated];
+        } @catch (NSException *exception) {
+            if ([self.delegate respondsToSelector:@selector(pagerTabBar:scrollToItemFailedAtIndex:atScrollPosition:animated:totalCount:)]) {
+                [self.delegate pagerTabBar:self scrollToItemFailedAtIndex:index atScrollPosition:scrollPosition animated:animated totalCount:self.countOfItems];
+            }
+        } @finally {
+            
+        }
     }
 }
 

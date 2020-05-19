@@ -39,6 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 // transition frome cell to cell with progress
 - (void)pagerTabBar:(TYTabPagerBar *)pagerTabBar transitionFromeCell:(UICollectionViewCell<TYTabPagerBarCellProtocol> * _Nullable)fromCell toCell:(UICollectionViewCell<TYTabPagerBarCellProtocol> * _Nullable)toCell progress:(CGFloat)progress;
 
+- (void)pagerTabBar:(TYTabPagerBar *)pagerTabBar scrollToItemFailedAtIndex:(NSInteger)index atScrollPosition:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated totalCount:(NSInteger)totalCount;
+
 @end
 
 @interface TYTabPagerBar : UIView
